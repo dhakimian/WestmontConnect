@@ -1,4 +1,16 @@
 Wmconnect::Application.routes.draw do
+  get "admin_pages/queue"
+
+  get "admin_pages/search"
+
+  get "admin_pages/searchresults"
+
+  get "admin_pages/directory"
+
+  get "admin_pages/edituser"
+
+  get "admin_pages/newsletter"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
