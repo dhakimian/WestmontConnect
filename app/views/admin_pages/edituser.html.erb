@@ -46,15 +46,15 @@
 		</div>
 		<div id="gi_name">
 			<div class="fullname">
-				<h4>Samantha Kathy Hawkins</h4>
+				<h4><%= @user[:name] %></h4>
 			</div>
 			<div id="namechange">
 				<a href="#" class="wcbutton">Change Name</a> 
 			</div>
 		</div>
 		<div id="gi_info">
-			<p>Major: <span>Business Management</span></p>
-			<p>Class: <span>2009</span></p>
+			<p>Major: <span><%= @user[:major] %></span></p>
+			<p>Class: <span><%= @user[:year] %></span></p>
 			<a href="" class="wcbutton">Go Back</a>
 		</div>
 		<div id="gi_contact">
