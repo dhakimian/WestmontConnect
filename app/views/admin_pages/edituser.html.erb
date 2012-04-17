@@ -5,71 +5,143 @@
 			<h2>Users</h2>
 			<p class="line2">Use this page to modify a user's attributes.</p>
 		</div>
+		
 		<div id="gi_name">
-			<div class="fullname">
-				<h4><%= @user[:name] %></h4>
-			</div>
-			<div id="namechange">
-				<a href="#" class="wcbutton">Change Name</a> 
-			</div>
+			<h3><%= @user[:name] %></h3><br>
 		</div>
+
+
 		<div id="gi_info">
+			<p>DB Id: <span><%= @user[:id] %></span></p>
 			<p>Major: <span><%= @user[:major] %></span></p>
 			<p>Class: <span><%= @user[:year] %></span></p>
-			<a href="" class="wcbutton">Go Back</a>
 		</div>
 		<div id="gi_contact">
+			<%= form_tag 'commituser' do -%>
+			<%= hidden_field_tag 'user_id', @user[:id] %>
+			<%= hidden_field_tag 'user_name', @user[:name] %>
+
 			<h2>Contact Information</h2>
-			<form>
-				<fieldset>
+			
+			<fieldset>
 				<h6>Phone Number</h6>
 					<ol>
-					 <li><label></label><input placeholder="Home: (###) ###-####"> Primary</li>
-					 <li><label> </label><input placeholder="Cell: (###) ###-####"><a href="" class="wcbutton">Make Primary</a></li>
+					 <li><%= text_field_tag 'phone1', @user[:phone1], :placeholder => "Primary Phone" %> Primary</li>
+					 <li><%= text_field_tag 'phone2', @user[:phone2], :placeholder => "Secondary Phone" %> </li>
 					 </ol>
-					<p>Add Phone Number</p>
-					<ol>
-					<li><label></label><input placeholder="Select Home or Cell"> <input placeholder="(###) ###-####"><a href="" class="wcbutton">Add</a></li>
-					</ol>
 			 </fieldset>
-			</form>		
-			<form>
-				<fieldset>
+
+			<fieldset>
 				<h6>Email Address</h6>
 					<ol>
-						<li><label></label><input placeholder="Primary email"><a href="" class="wcbutton">Edit</a></li>
-						<li><label></label><input placeholder="Secondary email"><a href="" class="wcbutton">Add</a></li>
+						<li><%= text_field_tag 'email', @user[:email], :placeholder => "Email Address" %></li>
 					</ol>
-				</fieldset>	
-			</form>
-			<form>
-				<fieldset>
+			</fieldset>	
+
+			<fieldset>
 				<h6>Mailing Address</h6>
 					<ol>
-						<li><label></label><input placeholder="Street "> </li>
-						<li><label></label><input placeholder="City " /> </li>
-						<li><label></label><input placeholder="State " /> </li>
-						<li><label></label><input placeholder="Zip" /> </li>
-						<li><label></label><input placeholder="Country" /><a href="" class="wcbutton"> Edit </a></li>
+						<li><%= text_field_tag 'Addr1', @user[:addr1], :placeholder => "Street Line 1" %></li>
+						<li><%= text_field_tag 'Addr2', @user[:addr2], :placeholder => "Street Line 2" %></li>
+						<li><%= text_field_tag 'Addr3', @user[:addr3], :placeholder => "Street Line 3" %></li>
+						<li><%= text_field_tag 'City', @user[:addr_city], :placeholder => "City" %></li>
+						<li><%= text_field_tag 'State', @user[:addr_state], :placeholder => "State" %></li>
+						<li><%= text_field_tag 'Zip', @user[:addr_zip], :placeholder => "Zip" %></li>
+						<li><%= text_field_tag 'Country', @user[:addr_country], :placeholder => "Country" %></li>
+						<li><%= submit_tag "Save Contact Information", :class => 'wcbutton' %></li>
 					</ol>
-					<p>Add Address</p>
+			</fieldset>
+			
+			<% end %>
+
+			
+		</div>
+
+		<div id="gi_contact">
+			<%= form_tag 'commituser' do -%>
+			<%= hidden_field_tag 'user_id', @user[:id] %>
+			<%= hidden_field_tag 'user_name', @user[:name] %>
+			
+
+			<h2>Marital Information</h2>
+			
+			<fieldset>
+				<h6>Change Name</h6>
 					<ol>
-						<li><label></label><input placeholder="Street "> </li>
-						<li><label></label><input placeholder="City" /> </li>
-						<li><label></label><input placeholder="State" /> </li>
-						<li><label></label><input placeholder="Zip" /> </li>
-						<li><label></label><input placeholder="Country" /><a href="" class="wcbutton"> Add </a></li>
+					 <li><%= text_field_tag 'new_first_nszcvfame', nil, :placeholder => "First" %></li>
 					</ol>
-				</fieldset>
-			</form>
+			 </fieldset>
+			<% end %>
 		</div>
+
 		<div id="gi_contact">
+			<%= form_tag 'commituser' do %>
+			<%= hidden_field_tag 'user_id', @user[:id] %>
+			<%= hidden_field_tag 'user_name', @user[:name] %>
+
 			<h2>Professional Information</h2>
+			
+			<fieldset>
+				<h6>Business Information</h6>
+					<ol>
+					 <li><%= select_tag "empStatus", "<option>Current</option><option>Former</option>".html_safe %></li>
+					 <li><%= text_field_tag 'industry', nil, :placeholder => "Industry" %></li>
+					 <li><%= text_field_tag 'corpName', nil, :placeholder => "Employer Name" %></li>
+					 <li><%= text_field_tag 'empID', nil, :placeholder => "Employee ID" %></li>
+					 <li><%= text_field_tag 'empTitle', nil, :placeholder => "Title" %></li>
+					</ol>
+					<h6>Business Address</h6>
+					<ol>
+					 <li><%= select_tag "prefBusAdd", "<option>No</option><option>Yes</option>".html_safe %><label> Prefer Business Address</label></li>
+					 <li><%= text_field_tag 'empAddress1', nil, :placeholder => "Business Address 1" %></li>
+					 <li><%= text_field_tag 'empAddress2', nil, :placeholder => "Business Address 2" %></li>
+					 <li><%= text_field_tag 'empAddress3', nil, :placeholder => "Business Address 3" %></li>
+					 <li><%= text_field_tag 'empCity', nil, :placeholder => "City" %></li>
+					 <li><%= text_field_tag 'empState', nil, :placeholder => "State" %></li>
+					 <li><%= text_field_tag 'empZip', nil, :placeholder => "Zip" %></li>
+					 <li><%= text_field_tag 'empCountry', nil, :placeholder => "Country" %></li>
+					 <li><%= text_field_tag 'empPhone', nil, :placeholder => "Business Phone" %></li>
+					 <li><%= submit_tag "Save Business Information", :class => 'wcbutton' %></li>
+					</ol>
+			 </fieldset>
+
+			 <% end %>
 		</div>
+
 		<div id="gi_contact">
-			<h2>Interests</h2>
+			<%= form_tag 'commituser' do %>
+			<%= hidden_field_tag 'user_id', @user[:id] %>
+			<%= hidden_field_tag 'user_name', @user[:name] %>
+
+			<h2>DANGER ZONE</h2>
+			
+			<fieldset>
+				<h6>Change Name</h6>
+					<ol>
+					 <li><%= select_tag "title", "<option>Title</option>
+					 								<option>Mr.</option>
+					 								<option>Mrs.</option>
+					 								<option>Miss</option>
+					 								<option>Dr.</option>
+					 								<option>Rev.</option>
+					 								<option>Chaplain</option>".html_safe %></li>
+					 <li><%= text_field_tag 'new_first_name', nil, :placeholder => "First" %></li>
+					 <li><%= text_field_tag 'new_middle_name', nil, :placeholder => "Middle" %></li>
+					 <li><%= text_field_tag 'new_last_name', nil, :placeholder => "Last" %></li>
+					 <%= submit_tag "Change Name", :class => 'wcbutton', :confirm => "Are you absolutely sure?" %>
+					 </ol>
+			 </fieldset>
+
+			 <fieldset>
+			 	<br>
+				<h6>Change Status</h6>
+					<ol>
+					 <%= submit_tag "Mark as Deceased", :class => 'wcbutton', :confirm => "Are you absolutely sure?" %>
+					 </ol>
+			 </fieldset>
+			 <% end -%>
+			
 		</div>
-		<div id="gi_contact">
-		<a href="" class="wcbutton">Update</a> <a href="" class="wcbutton">Go Back</a>
-		</div>
+
+		
 	</div>
