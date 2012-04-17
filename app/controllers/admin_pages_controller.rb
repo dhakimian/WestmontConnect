@@ -13,6 +13,8 @@ class AdminPagesController < ApplicationController
 
   def edituser
     # ~~~ Simulate User Lookup ~~~
+    @id = params[:id]
+
     @user = Hash.new
     @user = {
       id: 0003420,
@@ -32,6 +34,7 @@ class AdminPagesController < ApplicationController
     }
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+    @asdf = @id
 
 
 
