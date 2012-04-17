@@ -15,6 +15,8 @@ Wmconnect::Application.routes.draw do
 
   post "admin_pages/newsletter"
 
+  post "admin_pages/searchresults"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

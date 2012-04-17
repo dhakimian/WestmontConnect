@@ -6,6 +6,33 @@ class AdminPagesController < ApplicationController
   end
 
   def searchresults
+    @debug = params.to_s
+    @params = params
+
+    
+    @results_num = rand(25)
+    @results = ""
+    i = 0
+    while i < @results_num
+      @results += "
+      <div class=\"searched\">
+          <div class=\"searched_img\">
+            <img src=\"../assets/profile_picture.jpg\" alt=\"profile_picture\" width=\"55\" height=\"54\" />
+          </div>
+          <div class=\"searched_info\">
+            <h3>Jon B. Doe</h3>
+            <p>Jon Doe Designs</p>
+            <p>Class Year 1999</p>
+          </div>
+          <div class=\"searched_options\">
+            <ul>
+            <li><a href=\"edituser?id=PLACEHOLDER_ID\" class=\"wcbutton\">Edit Content</a></li>
+            <li><a href=\"\" class=\"wcbutton\" data-reveal-id=\"myModal\">Ban User</a></li>
+            </ul>
+          </div>
+      </div>"
+      i += 1
+    end
   end
 
   def directory

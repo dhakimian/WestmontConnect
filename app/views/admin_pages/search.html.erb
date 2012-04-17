@@ -1,19 +1,22 @@
 <%= provide(:title, 'Admin Panel | Search') %>
 	<div id="adminqueue">
+		<%= form_tag 'searchresults' do -%>
 		<div>
+			
 			<h2>Users</h2>
 			<p class="line2">You can search for users to edit content, ban user, or announce the user has passed away.</p>
-			<input type="text" maxlength="1000" class="special_text3"><a href="searchresults" class="wcbutton">Search</a>
-			<a href="" class="wcbutton">Show All Alumni</a>
+			<%= text_field_tag 'title', nil, :maxlength => 1000, :class => "special_text3" %> <%= submit_tag "Search", :class => 'wcbutton' %>
+			
 		</div>
+		<br><br>
 		<div>
 			<h3>Filter By Location</h3>
 			<form>
 				<fieldset>
 					<ol>
-						<li><input type="text" maxlength="500" placeholder="City"/></li>
-						<li><input type="text" maxlength="500" placeholder="State/Providence"/></li>
-						<li><input type="text" maxlength="500" placeholder="Zip"/></li>
+						<li><%= text_field_tag 'city', nil, :placeholder => "City" %></li>
+						<li><%= text_field_tag 'state', nil, :placeholder => "State" %></li>
+						<li><%= text_field_tag 'zip', nil, :placeholder => "Zip" %></li>
 					</ol>
 				</fieldset>
 			</form>
@@ -24,31 +27,29 @@
 				<fieldset>
 					<ol>
 						<li><div class="input"><label></label>
-						  <select name="normalSelect" id="normalSelect">
-						    <option>Degree Type</option>
-						    <option>1</option>
-						    <option>2</option>
-						    <option>3</option>
-						    <option>4</option>
-						  </select>
+							<%= select_tag "degree", "
+									<option>Degree Type</option>
+						    		<option>1</option>
+						    		<option>2</option>
+						    		<option>3</option>
+						    		<option>4</option>".html_safe %>
 						</div>
 						</li>
 						<li><div class="input"><label></label>
-						  <select name="normalSelect" id="normalSelect">
-						    <option>Major</option>
-						    <option>1</option>
-						    <option>2</option>
-						    <option>3</option>
-						    <option>4</option>
-						  </select>
+							<%= select_tag "Major",
+								   "<option>Major</option>
+						    		<option>1</option>
+						    		<option>2</option>
+						    		<option>3</option>
+						    		<option>4</option>".html_safe %>
 						</div>
 						</li>
-						<li><input type="text" maxlength="500" placeholder="Department"/></li>
-						<li><input type="text" maxlength="500" placeholder="e.g. 2011 or 1995-2011"/></li>
+						<li><%= text_field_tag 'department', nil, :placeholder => "Department" %></li>
+						<li><%= text_field_tag 'class', nil, :placeholder => "Class Year" %></li>
 					</ol>
 				</fieldset>
 			</form>
 		</div>
-		<a href="" class="wcbutton">Search</a>
+		<% end %>
 	</div>
 </div>

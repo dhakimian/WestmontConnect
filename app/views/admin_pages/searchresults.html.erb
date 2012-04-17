@@ -5,83 +5,17 @@
 			<p class="line2">You can search for users to edit content, ban user, or announce the user has passed away.</p>
 		</div>
 		<div>
-			<h3>3 Results for "Sally Struthers" Class of 2008</h3>
-			<input type="text" maxlength="1000" class="special_text3"><a href="" class="wcbutton">Search</a>
-			<a href="" class="wcbutton">Show All Alumni</a>
+			<h3><%= @results_num %> Results for "<%= @params[:title] %>"</h3>
+			<%= form_tag 'searchresults' do -%>
+			<%= text_field_tag 'title', nil, :maxlength => 1000, :class => "special_text3" %> <%= submit_tag "Search", :class => 'wcbutton' %>
+			<% end %>
 		</div>
 		<div id="searchresults">
 		
-			<div class="searched">
-					<div class="searched_img">
-						<img src="../assets/profile_picture.jpg" alt="profile_picture" width="55" height="54" />
-					</div>
-					<div class="searched_info">
-						<h3>Jon B. Doe</h3>
-						<p>Jon Doe Designs</p>
-						<p>Class Year 1999</p>
-					</div>
-					<div class="searched_options">
-						<ul>
-						<li><a href="" class="wcbutton">Edit Content</a></li>
-						<li><a href="" class="wcbutton">User Passed Away</a> </li>
-						<li><a href="" class="wcbutton" data-reveal-id="myModal">Ban User</a></li>
-						</ul>
-					</div>
-			</div> <!--div searched closed -->
-			
-			<div class="searched">
-					<div class="searched_img">
-						<img src="../assets/profile_picture.jpg" alt="profile_picture" width="55" height="54" />
-					</div>
-					<div class="searched_info">
-						<h3>Jon B. Doe</h3>
-						<p>Jon Doe Designs</p>
-						<p>Class Year 1999</p>
-					</div>
-					<div class="searched_options">
-						<ul>
-						<li><a href="" class="wcbutton">Edit Content</a></li>
-						<li><a href="" class="wcbutton" data-reveal-id="myModal2">User Passed Away</a> </li>
-						<li><a href="" class="wcbutton" data-reveal-id="myModal">Ban User</a></li>
-						</ul>
-					</div>
-			</div> <!--div searched closed -->
-			
-			<div class="searched">
-					<div class="searched_img">
-						<img src="../assets/profile_picture.jpg" alt="profile_picture" width="55" height="54" />
-					</div>
-					<div class="searched_info">
-						<h3>Jon B. Doe</h3>
-						<p>Jon Doe Designs</p>
-						<p>Class Year 1999</p>
-					</div>
-					<div class="searched_options">
-						<ul>
-						<li><a href="" class="wcbutton">Edit Content</a></li>
-						<li><a href="" class="wcbutton" data-reveal-id="myModal2">User Passed Away</a> </li>
-						<li><a href="" class="wcbutton" data-reveal-id="myModal">Ban User</a></li>
-						</ul>
-					</div>
-			</div> <!--div searched closed -->
-			
-			<div class="searched">
-					<div class="searched_img">
-						<img src="../assets/profile_picture.jpg" alt="profile_picture" width="55" height="54" />
-					</div>
-					<div class="searched_info">
-						<h3>Jon B. Doe</h3>
-						<p>Jon Doe Designs</p>
-						<p>Class Year 1999</p>
-					</div>
-					<div class="searched_options">
-						<ul>
-						<li><a href="" class="wcbutton">Edit Content</a></li>
-						<li><a href="" class="wcbutton" data-reveal-id="myModal2">User Passed Away</a> </li>
-						<li><a href="" class="wcbutton" data-reveal-id="myModal">Ban User</a></li>
-						</ul>
-					</div>
-			</div> <!--div searched closed -->
+			<%= @results.html_safe %>
 			
 		</div><!-- div searchresults closed -->
+		<%= @debug %>
 	</div><!-- div adminqueue closed -->
+
+	
