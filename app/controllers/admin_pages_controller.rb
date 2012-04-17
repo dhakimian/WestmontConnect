@@ -1,20 +1,9 @@
 class AdminPagesController < ApplicationController
-  def queue
-  end
-
-  def search
-  end
-
-  def searchresults
-    @debug = params.to_s
-    @params = params
-
-    
-    @results_num = rand(25)
-    @results = ""
+  def fakeresults(results_num)
+    results = ""
     i = 0
-    while i < @results_num
-      @results += "
+    while i < results_num
+      results += "
       <div class=\"searched\">
           <div class=\"searched_img\">
             <img src=\"../assets/profile_picture.jpg\" alt=\"profile_picture\" width=\"55\" height=\"54\" />
@@ -33,9 +22,39 @@ class AdminPagesController < ApplicationController
       </div>"
       i += 1
     end
+    return results
+  end
+
+  def queue
+  end
+
+  def search
+  end
+
+  def searchresults
+    @debug = params.to_s
+    @params = params
+
+    
+    @results_num = rand(25)
+    @results = fakeresults(@results_num)
   end
 
   def directory
+    @links = "<li><a href = \"?l=all\">All</a></li>"
+    ("A".."Z").each do |l|
+      @links += "<li><a href = \"?l=#{l}\">#{l}</a></li>"
+    end
+
+    if params["l"] == "all"
+      @results = "Showing All Users"
+    else
+      @results = "Showing Users Who's Name Begins With #{params["l"]}"
+    end
+
+    @results_num = rand(10)
+    @results_str = fakeresults(@results_num)
+
   end
 
   def edituser
@@ -66,14 +85,6 @@ class AdminPagesController < ApplicationController
   end
 
   def newsletter
-    @debug = params.to_s
-    if params["title"].nil?
-    elsif params["title"] == "" || params["body"] == ""
-      @success = " - Cannot post a newsletter with no title or body!"
-    else
-      @success = " - Newsletter posted successfully!"
-    end
-
     # ~~~ Simulate Database Query ~~~
 
     # Look at previous posts
@@ -86,7 +97,7 @@ class AdminPagesController < ApplicationController
         remaining essentially unchanged. It was popularised in the 1960s with the release of 
         Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
         software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "Everyone Died",
+        "New Features!",
         "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
          piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard 
          McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the 
@@ -109,6 +120,21 @@ class AdminPagesController < ApplicationController
          Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web 
          sites still in their infancy. Various versions have evolved over the years, sometimes by 
          accident, sometimes on purpose (injected humour and the like)."]
+
+
+    @debug = params.to_s
+    if params["title"].nil?
+    elsif params["title"] == "" || params["body"] == ""
+      @success = " - Cannot post a newsletter with no title or body!"
+    else
+      @success = " - Newsletter posted successfully!"
+      @posts[0] = params["title"]
+      @posts[1] = params["body"]
+    end
+
+    
+
+
 
   end
 

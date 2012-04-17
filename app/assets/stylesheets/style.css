@@ -720,7 +720,7 @@ a.right_button, a.right_button, input[type=submit].right_button {
 		padding-bottom: 15px;
 		color: white; }
 #social {
-	background: url("images/socialicons.png") 0 0 no-repeat;
+	background: url("../assets/socialicons.png") 0 0 no-repeat;
 	width: 77px;
 	height: 15px;
 	margin-left: 5px;
