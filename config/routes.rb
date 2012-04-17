@@ -13,6 +13,8 @@ Wmconnect::Application.routes.draw do
 
   post "admin_pages/commituser"
 
+  post "admin_pages/newsletter"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
