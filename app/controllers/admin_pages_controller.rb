@@ -1,28 +1,21 @@
 class AdminPagesController < ApplicationController
-  def fakeresults(results_num)
-    results = ""
+  def fakeuserlist num
+    names = ["Jim", "John", "Bob", "Fran", "Bill", "Ted", "Norm", "Tolstoy", "Phillips", "Alex", "Johnny", "Daniel", "Bilbo", "Frodo", "Samwise"]
+    majors = ["Computer Science", "Liberal Arts", "Dark Arts", "Linguistics", "Psychology", "English"]
+    users = []
     i = 0
-    while i < results_num
-      results += "
-      <div class=\"searched\">
-          <div class=\"searched_img\">
-            <img src=\"../assets/profile_picture.jpg\" alt=\"profile_picture\" width=\"55\" height=\"54\" />
-          </div>
-          <div class=\"searched_info\">
-            <h3>Jon B. Doe</h3>
-            <p>Jon Doe Designs</p>
-            <p>Class Year 1999</p>
-          </div>
-          <div class=\"searched_options\">
-            <ul>
-            <li><a href=\"edituser?id=PLACEHOLDER_ID\" class=\"wcbutton\">Edit Content</a></li>
-            <li><a href=\"\" class=\"wcbutton\" data-reveal-id=\"myModal\">Ban User</a></li>
-            </ul>
-          </div>
-      </div>"
+    while i < num
+      users += [{
+        id: "#{rand(1000000)}",
+        name: "#{names[rand(names.size)]} #{names[rand(names.size)]} #{names[rand(names.size)]} ",
+        major: "#{majors[rand(majors.size)]}",
+        year: "#{rand(2013)}" ,
+
+        }]
       i += 1
     end
-    return results
+  return users
+
   end
 
   def queue
@@ -37,7 +30,7 @@ class AdminPagesController < ApplicationController
 
     
     @results_num = rand(25)
-    @results = fakeresults(@results_num)
+    @users = fakeuserlist @results_num
   end
 
   def directory
@@ -46,14 +39,7 @@ class AdminPagesController < ApplicationController
       @links += "<li><a href = \"?l=#{l}\">#{l}</a></li>"
     end
 
-    if params["l"] == "all"
-      @results = "Showing All Users"
-    else
-      @results = "Showing Users Who's Name Begins With #{params["l"]}"
-    end
-
-    @results_num = rand(10)
-    @results_str = fakeresults(@results_num)
+    @users = fakeuserlist 10
 
   end
 
@@ -85,57 +71,6 @@ class AdminPagesController < ApplicationController
   end
 
   def newsletter
-    # ~~~ Simulate Database Query ~~~
-
-    # Look at previous posts
-    @posts = [
-        "Cool Things Happening",
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when 
-        an unknown printer took a galley of type and scrambled it to make a type specimen 
-        book. It has survived not only five centuries, but also the leap into electronic typesetting, 
-        remaining essentially unchanged. It was popularised in the 1960s with the release of 
-        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
-        software like Aldus PageMaker including versions of Lorem Ipsum.",
-        "New Features!",
-        "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-         piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard 
-         McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the 
-         more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the 
-         cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum 
-         comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of 
-         Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
-         very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit 
-         amet.., comes from a line in section 1.10.32.",
-        "Asdf Is my New Favorite Word",
-        "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
-        interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also
-        reproduced in their exact original form, accompanied by English versions from the 1914 
-        translation by H. Rackham.",
-        "Westmont Connect Surpasses Facebook",
-        "It is a long established fact that a reader will be distracted by the readable content 
-        of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-
-        less normal distribution of letters, as opposed to using 'Content here, content here', making
-         it look like readable English. Many desktop publishing packages and web page editors now use 
-         Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web 
-         sites still in their infancy. Various versions have evolved over the years, sometimes by 
-         accident, sometimes on purpose (injected humour and the like)."]
-
-
-    @debug = params.to_s
-    if params["title"].nil?
-    elsif params["title"] == "" || params["body"] == ""
-      @success = " - Cannot post a newsletter with no title or body!"
-    else
-      @success = " - Newsletter posted successfully!"
-      @posts[0] = params["title"]
-      @posts[1] = params["body"]
-    end
-
-    
-
-
-
   end
 
   def commituser

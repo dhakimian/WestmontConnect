@@ -12,7 +12,25 @@
 		</div>
 		<div id="searchresults">
 		
-			<%= @results.html_safe %>
+			<% @users.each do |user| %>
+				
+			<div class="searched">
+					<div class="searched_img">
+						<img src="../assets/profile_picture.jpg" alt="profile_picture" width="55" height="54" />
+					</div>
+					<div class="searched_info">
+						<h3><%= user[:name] %></h3>
+						<p>Majored in <%= user[:major] %></p>
+						<p>Class Year <%= user[:year] %></p>
+					</div>
+					<div class="searched_options">
+						<ul>
+						<li><span><a href="edituser?id=<%= user[:id] %>" class="wcbutton">Edit User</a><span></li>
+						</ul>
+					</div>
+			</div> <!--div searched closed -->
+			
+			<% end %>
 			
 		</div><!-- div searchresults closed -->
 		<%= @debug %>
