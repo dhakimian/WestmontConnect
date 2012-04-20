@@ -9,6 +9,7 @@
 			<%= form_tag 'searchresults' do -%>
 			<%= text_field_tag 'title', nil, :maxlength => 1000, :class => "special_text3" %> <%= submit_tag "Search", :class => 'wcbutton' %>
 			<% end %>
+			<a href="directory" class="wcbutton">Show All Alumni</a>
 		</div>
 		<div id="searchresults">
 		
@@ -19,13 +20,15 @@
 						<img src="../assets/profile_picture.jpg" alt="profile_picture" width="55" height="54" />
 					</div>
 					<div class="searched_info">
-						<h3><%= user[:name] %></h3>
+                                                <h3><%= getname(user) %></h3>
 						<p>Majored in <%= user[:major] %></p>
-						<p>Class Year <%= user[:year] %></p>
+						<p>Class of <%= user[:year] %></p>
 					</div>
 					<div class="searched_options">
 						<ul>
 						<li><span><a href="edituser?id=<%= user[:id] %>" class="wcbutton">Edit User</a><span></li>
+						<li><a href="" class="wcbutton" data-reveal-id="myModal2">User Died</a> </li>
+                                                <li><a href="" class="wcbutton" data-reveal-id="myModal">Ban User</a></li>
 						</ul>
 					</div>
 			</div> <!--div searched closed -->
@@ -35,5 +38,3 @@
 		</div><!-- div searchresults closed -->
 		<%= @debug %>
 	</div><!-- div adminqueue closed -->
-
-	
